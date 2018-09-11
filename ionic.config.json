@@ -1,8 +1,8 @@
 {
-  "name": "appsntc",
+  "name": "loginTab",
   "integrations": {
     "cordova": {}
   },
   "type": "ionic-angular",
-  "pro_id": "988b41df"
+  "pro_id": "68886bbe"
 }
