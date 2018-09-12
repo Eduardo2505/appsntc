@@ -4,12 +4,18 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 /*=======================  page =================== */
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
+
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import {MenuDesplegablePage} from '../pages/menu-desplegable/menu-desplegable';
+import {ConsultasPage} from '../pages/consultas/consultas';
+import {PentrenamientoPage} from '../pages/pentrenamiento/pentrenamiento';
+import {PerfilPage} from '../pages/perfil/perfil';
+import {PmenuPage} from '../pages/pmenu/pmenu';
+import {ComidasPage} from '../pages/comidas/comidas';
+import {AlimentosPage} from '../pages/alimentos/alimentos';
+import {PgrupoPage} from '../pages/pgrupo/pgrupo';
 
 /*===== FIN PAGE ==============================*/
 
@@ -29,12 +35,17 @@ import { VarGlobalesProvider } from '../providers/var-globales/var-globales';
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
+    ConsultasPage,
+    PentrenamientoPage,
     HomePage,
     TabsPage,
     LoginPage,
-    MenuDesplegablePage
+    MenuDesplegablePage,
+    PerfilPage,
+    PmenuPage,
+    ComidasPage,
+    AlimentosPage,
+    PgrupoPage
   ],
   imports: [
     BrowserModule,
@@ -45,12 +56,17 @@ import { VarGlobalesProvider } from '../providers/var-globales/var-globales';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
+    ConsultasPage,
+    PentrenamientoPage,
     HomePage,
     TabsPage,
     LoginPage,
-    MenuDesplegablePage
+    MenuDesplegablePage,
+    PerfilPage,
+    PmenuPage,
+    ComidasPage,
+    AlimentosPage,
+    PgrupoPage
   ],
   providers: [
     StatusBar,

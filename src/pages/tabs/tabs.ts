@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 
-import { AboutPage } from '../about/about';
-import { ContactPage } from '../contact/contact';
+import {ConsultasPage} from '../consultas/consultas';
+import {PentrenamientoPage} from '../pentrenamiento/pentrenamiento';
+import {PerfilPage} from '../perfil/perfil';
+import {PmenuPage} from '../pmenu/pmenu';
 import { HomePage } from '../home/home';
 import { MenuDesplegablePage } from '../menu-desplegable/menu-desplegable';
 
@@ -11,9 +13,11 @@ import { MenuDesplegablePage } from '../menu-desplegable/menu-desplegable';
 export class TabsPage {
 
   tab1Root = HomePage;
-  tab2Root = AboutPage;
-  tab3Root = ContactPage;
-  tab4Root = MenuDesplegablePage;
+  tab2Root = PerfilPage;
+  tab3Root = ConsultasPage;
+  tab4Root = PentrenamientoPage;
+  tab5Root = PmenuPage;
+  tab6Root = MenuDesplegablePage;
 
   constructor() {
 

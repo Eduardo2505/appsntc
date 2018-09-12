@@ -1,8 +1,7 @@
 import { Component} from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, Platform, App } from 'ionic-angular';
 
-import { AboutPage } from '../about/about';
-import { ContactPage } from '../contact/contact';
+import {PerfilPage} from '../perfil/perfil';
 import { LoginServicioProvider } from '../../providers/login-servicio/login-servicio';
 import { VarGlobalesProvider } from '../../providers/var-globales/var-globales';
 
@@ -39,8 +38,8 @@ export class MenuDesplegablePage {
     console.log("<<<<<<<<<<<<<<< Entro al nmenu de  del usuario>>>>>>>>>>>>");
 
     this.pages = [
-      { titulo: 'Perfil', component: AboutPage, icon: 'ios-contact' },
-      { titulo: 'Ajustes', component: ContactPage, icon: 'ios-cog' }
+      { titulo: 'Perfil', component: PerfilPage, icon: 'ios-contact' },
+      { titulo: 'Ajustes', component: PerfilPage, icon: 'ios-cog' }
     ];
   }
 

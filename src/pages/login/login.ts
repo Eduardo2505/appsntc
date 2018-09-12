@@ -54,8 +54,8 @@ export class LoginPage {
       data => {
         var resultado = Object.keys(data).length;
         if (resultado != 0) {
-          this.nombre = data[0]["Nombre"] + " " + data[0]["apellidos"];
-          this.idempleado = data[0]["idempleado"];
+          this.nombre = data[0]["nombre"];
+          this.idempleado = data[0]["idCliente"];
           this.auth.sesionUser(this.nombre,
             this.registerCredentials.email,
             this.idempleado).subscribe(allowed => {
