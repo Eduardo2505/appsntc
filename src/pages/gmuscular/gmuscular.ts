@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Loading, LoadingController } from 'ionic-angular';
-import{GmuscularPage} from '../gmuscular/gmuscular';
+import {EjerciciosPage} from '../ejercicios/ejercicios';
 
 /**
- * Generated class for the PentrenamientoPage page.
+ * Generated class for the GmuscularPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,10 +11,10 @@ import{GmuscularPage} from '../gmuscular/gmuscular';
 
 @IonicPage()
 @Component({
-  selector: 'page-pentrenamiento',
-  templateUrl: 'pentrenamiento.html',
+  selector: 'page-gmuscular',
+  templateUrl: 'gmuscular.html',
 })
-export class PentrenamientoPage {
+export class GmuscularPage {
 
   loading: Loading;
   constructor(public navCtrl: NavController,
@@ -26,9 +26,9 @@ export class PentrenamientoPage {
   }
 
 
-  grupo() {
+  ejercicios() {
     this.showLoading();
-    this.navCtrl.push(GmuscularPage);
+    this.navCtrl.push(EjerciciosPage);
   }
 
   showLoading() {

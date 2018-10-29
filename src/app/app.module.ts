@@ -16,6 +16,9 @@ import {PmenuPage} from '../pages/pmenu/pmenu';
 import {ComidasPage} from '../pages/comidas/comidas';
 import {AlimentosPage} from '../pages/alimentos/alimentos';
 import {PgrupoPage} from '../pages/pgrupo/pgrupo';
+import {GmuscularPage} from '../pages/gmuscular/gmuscular';
+import {EjerciciosPage} from '../pages/ejercicios/ejercicios';
+
 
 /*===== FIN PAGE ==============================*/
 
@@ -45,7 +48,9 @@ import { VarGlobalesProvider } from '../providers/var-globales/var-globales';
     PmenuPage,
     ComidasPage,
     AlimentosPage,
-    PgrupoPage
+    PgrupoPage,
+    GmuscularPage,
+    EjerciciosPage
   ],
   imports: [
     BrowserModule,
@@ -66,7 +71,9 @@ import { VarGlobalesProvider } from '../providers/var-globales/var-globales';
     PmenuPage,
     ComidasPage,
     AlimentosPage,
-    PgrupoPage
+    PgrupoPage,
+    GmuscularPage,
+    EjerciciosPage
   ],
   providers: [
     StatusBar,
