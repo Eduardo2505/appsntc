@@ -16,9 +16,8 @@ export class VarGlobalesProvider {
   public ulrAuximg: string;
 
   constructor(public http: Http) {
-    this.ulr = "http://sntcadmin.pvessy.com/sntc";
-    //this.ulr="http://desa.pvessy.com/Avedesa";
-    //this.ulr="http://adminave.pvessy.com/Ave";
+      this.ulr = "http://localhost/sntc";
+   // this.ulr = "http://sntcadmin.pvessy.com/sntc";
    // this.ulrUplad="http://adminave.pvessy.com/ionic/upload.php";
    // this.ulrAuximg="http://adminave.pvessy.com/Ave/subir/server/php/files/";
     this.imgAprobados=this.ulr+"/app/unopng.png";

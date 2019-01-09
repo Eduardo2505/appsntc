@@ -11,11 +11,17 @@ export class User {
   name: string;
   email: string;
   idempleado: number;
+  idConsulta: number;
+  genero: number;
+  idsucursal: number;
 
-  constructor(name: string, email: string, idempleado: number) {
+  constructor(name: string, email: string, idempleado: number, idConsulta: number,genero: number, idsucursal: number) {
     this.name = name;
     this.email = email;
     this.idempleado = idempleado;
+    this.idConsulta=idConsulta;
+    this.genero=genero;
+    this.idsucursal=idsucursal;
   }
 }
 
@@ -29,6 +35,9 @@ export class LoginServicioProvider {
   public nameStringe: string;
   public emailStringe: string;
   public idempleadoStringe: string;
+  public idConsultaStringe: string;
+  public generoStringe: string;
+  public idsucursalStringe: string;
   public banderaStronge: boolean = false;
 
 
@@ -95,17 +104,17 @@ export class LoginServicioProvider {
   }
 
 
-  public sesionUserStronge(usuario, email, idempleado) {
+  public sesionUserStronge(usuario, email, idempleado,idConsulta,genero,idsucursal) {
 
-    this.currentUser = new User(usuario, email, idempleado);
+    this.currentUser = new User(usuario, email, idempleado,idConsulta,genero,idsucursal);
 
   }
-  public sesionUser(usuario, email, idempleado) {
+  public sesionUser(usuario, email, idempleado,idConsulta,genero,idsucursal) {
 
-    this.guardarStorage(usuario, email, idempleado);
+    this.guardarStorage(usuario, email, idempleado,idConsulta,genero,idsucursal);
     return Observable.create(observer => {
       let access = true;
-      this.currentUser = new User(usuario, email, idempleado);
+      this.currentUser = new User(usuario, email, idempleado,idConsulta,genero,idsucursal);
       observer.next(access);
       observer.complete();
     });
@@ -133,18 +142,24 @@ export class LoginServicioProvider {
       this.storage.remove('usuario');
       this.storage.remove('email');
       this.storage.remove('idempleado');
+      localStorage.removeItem('idConsulta');
+      localStorage.removeItem('genero');
+      localStorage.removeItem('idsucursal');
     } else {
 
       localStorage.removeItem('usuario');
       localStorage.removeItem('email');
       localStorage.removeItem('idempleado');
+      localStorage.removeItem('idConsulta');
+      localStorage.removeItem('genero');
+      localStorage.removeItem('idsucursal');
 
     }
     this.banderaStronge = false;
 
   }
 
-  guardarStorage(usuario, email, idempleado) {
+  guardarStorage(usuario, email, idempleado,idConsulta,genero,idsucursal) {
 
 
     if (this.platform.is("cordova")) {
@@ -152,6 +167,9 @@ export class LoginServicioProvider {
       this.storage.set('usuario', usuario);
       this.storage.set('email', email);
       this.storage.set('idempleado', idempleado);
+      this.storage.set('idConsulta', idConsulta);
+      this.storage.set('genero', genero);
+      this.storage.set('idsucursal', idsucursal);
     } else {
 
       console.log("Entro a guardar Storige");
@@ -159,6 +177,9 @@ export class LoginServicioProvider {
       localStorage.setItem('usuario', usuario);
       localStorage.setItem('email', email);
       localStorage.setItem('idempleado', idempleado);
+      localStorage.setItem('idConsulta', idConsulta);
+      localStorage.setItem('genero', genero);
+      localStorage.setItem('idsucursal', idsucursal);
 
     }
 
@@ -191,6 +212,25 @@ export class LoginServicioProvider {
                 this.emailStringe = email;
               }
             });
+
+            this.storage.get('idsucursal')
+            .then((idsucursal) => {
+              if (idsucursal) {
+                this.idsucursalStringe = idsucursal;
+              }
+            });
+            this.storage.get('idConsulta')
+            .then((idConsulta) => {
+              if (idConsulta) {
+                this.idConsultaStringe = idConsulta;
+              }
+            });
+            this.storage.get('genero')
+            .then((genero) => {
+              if (genero) {
+                this.generoStringe = genero;
+              }
+            });
           // Sirve para comprobar
           this.storage.get('idempleado')
             .then((idempleado) => {
@@ -198,7 +238,7 @@ export class LoginServicioProvider {
 
 
                 this.banderaStronge = true;
-                this.sesionUserStronge(this.nameStringe, this.emailStringe, this.idempleadoStringe);
+                this.sesionUserStronge(this.nameStringe, this.emailStringe, this.idempleadoStringe,this.idConsultaStringe,this.generoStringe,this.idsucursalStringe);
 
               } else {
                 this.remover();
@@ -233,12 +273,30 @@ export class LoginServicioProvider {
 
         this.emailStringe = localStorage.getItem("email");
 
+        
       }
+
+      if (localStorage.getItem("idConsulta")) {
+
+        this.idConsultaStringe = localStorage.getItem("idConsulta");
+
+      }
+      if (localStorage.getItem("genero")) {
+
+        this.generoStringe = localStorage.getItem("genero");
+
+      }
+      if (localStorage.getItem("idsucursal")) {
+
+        this.idsucursalStringe = localStorage.getItem("idsucursal");
+
+      }
+
 
       if (localStorage.getItem("idempleado")) {
 
         this.banderaStronge = true;
-        this.sesionUserStronge(this.nameStringe, this.emailStringe, this.idempleadoStringe);
+        this.sesionUserStronge(this.nameStringe, this.emailStringe, this.idempleadoStringe,this.idConsultaStringe,this.generoStringe,this.idsucursalStringe);
       } else {
 
         this.remover();

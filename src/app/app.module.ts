@@ -18,6 +18,7 @@ import {AlimentosPage} from '../pages/alimentos/alimentos';
 import {PgrupoPage} from '../pages/pgrupo/pgrupo';
 import {GmuscularPage} from '../pages/gmuscular/gmuscular';
 import {EjerciciosPage} from '../pages/ejercicios/ejercicios';
+import {PlancPage} from '../pages/planc/planc';
 
 
 /*===== FIN PAGE ==============================*/
@@ -32,6 +33,8 @@ import { IonicStorageModule } from '@ionic/storage';
 //Son externos
 import { LoginServicioProvider } from '../providers/login-servicio/login-servicio';
 import { VarGlobalesProvider } from '../providers/var-globales/var-globales';
+import { PlanesconProvider } from '../providers/planescon/planescon';
+import { PlanAlimenticioProvider } from '../providers/plan-alimenticio/plan-alimenticio';
 
 
 
@@ -50,7 +53,8 @@ import { VarGlobalesProvider } from '../providers/var-globales/var-globales';
     AlimentosPage,
     PgrupoPage,
     GmuscularPage,
-    EjerciciosPage
+    EjerciciosPage,
+    PlancPage
   ],
   imports: [
     BrowserModule,
@@ -73,14 +77,17 @@ import { VarGlobalesProvider } from '../providers/var-globales/var-globales';
     AlimentosPage,
     PgrupoPage,
     GmuscularPage,
-    EjerciciosPage
+    EjerciciosPage,
+    PlancPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     LoginServicioProvider,
-    VarGlobalesProvider
+    VarGlobalesProvider,
+    PlanesconProvider,
+    PlanAlimenticioProvider
   ]
 })
 export class AppModule {}

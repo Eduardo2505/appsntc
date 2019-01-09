@@ -14,14 +14,14 @@
 
 
 <ion-content>
-    <ion-toolbar no-border-top *ngIf="demo != 'Title'">
+    <ion-toolbar>
        
-        <ion-segment color="danger" [(ngModel)]="favorites">
-          <ion-segment-button value="featured">
-            Porciones
+        <ion-segment color="danger"  [(ngModel)]="pet">
+          <ion-segment-button value="planes" >
+            Planes
           </ion-segment-button>
-          <ion-segment-button value="recent">
-            Alimentos
+          <ion-segment-button value="alimentos">
+            Alimenticios
           </ion-segment-button>
         </ion-segment>
       </ion-toolbar>
@@ -32,24 +32,16 @@
   <ion-list>
 
 
-    <ion-item-group>
+    <ion-item-group #item *ngFor="let i of registros">
 
 
-      <button ion-item (click)="comidas()">
+      <button ion-item (click)="comidas(i.idplanAlimentacion)">
         <ion-icon name="md-restaurant" item-start color="primary"></ion-icon>
-        <ion-label>Plan semanal</ion-label>
+        <ion-label>{{i.descripcion}}<p>Recomendación :</p><p>{{i.recomendacion}}</p></ion-label>
+   
         <ion-note item-end>Ver</ion-note>
-      </button>
-      <button ion-item (click)="comidas()">
-        <ion-icon name="md-restaurant" item-start color="primary"></ion-icon>
-        <ion-label>Plan Alimenticio x</ion-label>
-        <ion-note item-end>Ver</ion-note>
-      </button>
-      <button ion-item (click)="comidas()">
-        <ion-icon name="md-restaurant" item-start color="primary"></ion-icon>
-        <ion-label>Plan Entrenamiento con menu</ion-label>
-        <ion-note item-end>Ver</ion-note>
-      </button>
+      </button> 
+     
       
     </ion-item-group>
 

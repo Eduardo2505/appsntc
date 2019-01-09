@@ -16,12 +16,12 @@
 <ion-content >
     <ion-toolbar no-border-top *ngIf="demo != 'Title'">
        
-        <ion-segment color="danger" [(ngModel)]="favorites">
-          <ion-segment-button value="featured">
-            Porciones
+        <ion-segment color="danger" [(ngModel)]="op">
+          <ion-segment-button value="op1">
+            Comidas
           </ion-segment-button>
-          <ion-segment-button value="recent">
-            Alimentos
+          <ion-segment-button value="op2">
+            Tiempo
           </ion-segment-button>
         </ion-segment>
       </ion-toolbar>
@@ -32,26 +32,20 @@
   <ion-list>
 
 
-    <ion-item-group>
+      <ion-item-group #item *ngFor="let i of registros">
 
 
-      <button ion-item (click)="grupos()">
-        <ion-icon name="md-restaurant" item-start color="primary"></ion-icon>
-        <ion-label>Comida 1</ion-label>
-        <ion-note item-end>Ver</ion-note>
-      </button>
-      <button ion-item (click)="grupos()">
-        <ion-icon name="md-restaurant" item-start color="primary"></ion-icon>
-        <ion-label>Comida 2</ion-label>
-        <ion-note item-end>Ver</ion-note>
-      </button>
-      <button ion-item (click)="grupos()">
-        <ion-icon name="md-restaurant" item-start color="primary"></ion-icon>
-        <ion-label>Comida 3</ion-label>
-        <ion-note item-end>Ver</ion-note>
-      </button>
-      
-    </ion-item-group>
+          <button ion-item (click)="grupos(i.idcomidas)">
+            <ion-icon name="md-restaurant" item-start color="primary"></ion-icon>
+            <ion-label>Comida #. {{i.numeroComida}} <br>Tiempo  : {{i.timeeat}} Hrs .</ion-label>
+       
+            <ion-note item-end>Ver</ion-note>
+          </button>
+         
+          
+        </ion-item-group>
+
+  
 
 
   </ion-list>
