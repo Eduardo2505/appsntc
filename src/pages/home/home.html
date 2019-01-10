@@ -1,39 +1,73 @@
 <ion-header>
-  <ion-navbar color="primary">
-    <ion-searchbar  placeholder="Buscar"></ion-searchbar>
-  </ion-navbar>
-
-</ion-header>
-
-<ion-content padding>
+    <ion-navbar color="primary">
+      <!-- <ion-searchbar  placeholder="Buscar"></ion-searchbar> -->
+      <ion-title>Progreso </ion-title>
+    </ion-navbar>
   
+  </ion-header>
   
-  <ion-card>
+  <ion-content>
+      <ion-card-content>
+          <ion-card-title>
+              ¡Hola!  {{usuario}}<br><br>Ya puedes mededir tu progreso .
+          </ion-card-title>
+         
+        </ion-card-content>
+    <ion-card>
+      <ion-card-header>
+          PESO TOTAL
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #pesoTotal></canvas>
+      </ion-card-content>
+    </ion-card>
 
-
-     
-    <img src="{{imgPerfil}}"/>
-
-    <ion-card-content>
-      <ion-card-title>
-          Hola
-      </ion-card-title>
-      <p>
-          {{usuario}}
-      </p>
-    </ion-card-content>
-
-    <ion-item>
-      <ion-icon name='musical-notes' item-start style="color: #d03e84"></ion-icon>
-      Actividad  Fisica
-      <ion-badge item-end>9</ion-badge>
-    </ion-item>
-
-    <ion-item>
-      <ion-icon name='logo-twitter' item-start style="color: #55acee"></ion-icon>
-      Seguidores
-      <ion-badge item-end>260k</ion-badge>
-    </ion-item>
-
-  </ion-card>
-</ion-content>
+    <ion-card>
+        <ion-card-header>
+            MASA GRASA
+        </ion-card-header>
+        <ion-card-content>
+          <canvas #masaGrasa></canvas>
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+          <ion-card-header>
+              MASA MUSCULAR
+          </ion-card-header>
+          <ion-card-content>
+            <canvas #masaMuscular></canvas>
+          </ion-card-content>
+        </ion-card>
+        <ion-card>
+            <ion-card-header>
+                MASA MAGRA
+            </ion-card-header>
+            <ion-card-content>
+              <canvas #masaMagra></canvas>
+            </ion-card-content>
+          </ion-card>
+    <!-- <ion-card>
+      <ion-card-header>
+        Line Chart
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #lineCanvas></canvas>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-header>
+        Pie Chart
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #pieCanvas></canvas>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-header>
+        Doughnut Chart
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #doughnutCanvas></canvas>
+      </ion-card-content>
+    </ion-card> -->
+  </ion-content>
