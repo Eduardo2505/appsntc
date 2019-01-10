@@ -7,7 +7,7 @@
 <ion-header>
 
     <ion-navbar color="primary">
-        <ion-title>Grupos de Alimentos </ion-title>
+        <ion-title>Series</ion-title>
       </ion-navbar>
 
 </ion-header>
@@ -15,6 +15,9 @@
 
 <ion-content >
    
+    
+      
+    
       
   <ion-list>
 
@@ -22,9 +25,9 @@
       <ion-item-group #item *ngFor="let i of registros">
 
 
-          <button ion-item (click)="alimentos(i.idtipo)">
-            <ion-icon name="md-restaurant" item-start color="primary"></ion-icon>
-            <ion-label>{{i.grupo}} <br> {{i.nombre}}  <p style="color:rgb(226, 32, 106)">Porción(s)  : </p><p>{{i.porcion}}</p></ion-label>
+          <button ion-item (click)="volumenes(i.idserie)">
+            <ion-icon ios="ios-crop" md="md-crop" item-start color="primary"></ion-icon>
+            <ion-label text-wrap> Serie {{i.numero}} </ion-label>
        
             <ion-note item-end>Ver</ion-note>
           </button>

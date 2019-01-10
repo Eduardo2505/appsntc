@@ -7,48 +7,32 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Entrenamiento</ion-title>
+    <ion-title>Plan Entrenamiento</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content >
-    <ion-toolbar no-border-top *ngIf="demo != 'Title'">
-       
-        <ion-segment color="danger" [(ngModel)]="favorites">
-          <ion-segment-button value="featured">
-            Porciones
-          </ion-segment-button>
-          <ion-segment-button value="recent">
-            Alimentos
-          </ion-segment-button>
-        </ion-segment>
-      </ion-toolbar>
+    
     
       <ion-list>
 
+          <ion-item-group #item *ngFor="let i of registros">
 
-          <ion-item-group>
-      
-      
-            <button ion-item (click)="grupo()">
-              <ion-icon name="md-restaurant" item-start color="primary"></ion-icon>
-              <ion-label>Plan semanal</ion-label>
-              <ion-note item-end>Ver</ion-note>
-            </button>
-            <button ion-item (click)="grupo()">
-              <ion-icon name="md-restaurant" item-start color="primary"></ion-icon>
-              <ion-label>Plan Formato Excel</ion-label>
-              <ion-note item-end>Ver</ion-note>
-            </button>
-            <button ion-item (click)="grupo()">
-              <ion-icon name="md-restaurant" item-start color="primary"></ion-icon>
-              <ion-label>cxxxxx</ion-label>
-              <ion-note item-end>Ver</ion-note>
-            </button>
-            
-          </ion-item-group>
+
+              <button ion-item (click)="grupo(i.idplanEntranamiento)">
+                <ion-icon ios="ios-bookmarks" md="md-bookmarks" item-start color="primary"></ion-icon>
+                <ion-label>{{i.descripcion}}<p>Recomendación :</p><p>{{i.recomendacion}}</p></ion-label>
+           
+                <ion-note item-end>Ver</ion-note>
+              </button> 
+             
+              
+            </ion-item-group>
+
+
+          
       
       
         </ion-list>

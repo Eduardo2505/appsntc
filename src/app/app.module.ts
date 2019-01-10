@@ -16,9 +16,12 @@ import {PmenuPage} from '../pages/pmenu/pmenu';
 import {ComidasPage} from '../pages/comidas/comidas';
 import {AlimentosPage} from '../pages/alimentos/alimentos';
 import {PgrupoPage} from '../pages/pgrupo/pgrupo';
-import {GmuscularPage} from '../pages/gmuscular/gmuscular';
-import {EjerciciosPage} from '../pages/ejercicios/ejercicios';
 import {PlancPage} from '../pages/planc/planc';
+import {SemanaPage} from '../pages/semana/semana';
+import {MicroactivdadesPage} from '../pages/microactivdades/microactivdades';
+import {EjerciciosPage} from '../pages/ejercicios/ejercicios';
+import {SeriesPage} from '../pages/series/series';
+import {VolumenesPage} from '../pages/volumenes/volumenes';
 
 
 /*===== FIN PAGE ==============================*/
@@ -30,11 +33,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 
+
+
+
 //Son externos
 import { LoginServicioProvider } from '../providers/login-servicio/login-servicio';
 import { VarGlobalesProvider } from '../providers/var-globales/var-globales';
 import { PlanesconProvider } from '../providers/planescon/planescon';
 import { PlanAlimenticioProvider } from '../providers/plan-alimenticio/plan-alimenticio';
+import { PlanEntrenamientoProvider } from '../providers/plan-entrenamiento/plan-entrenamiento';
 
 
 
@@ -52,9 +59,12 @@ import { PlanAlimenticioProvider } from '../providers/plan-alimenticio/plan-alim
     ComidasPage,
     AlimentosPage,
     PgrupoPage,
-    GmuscularPage,
+    PlancPage,
+    SemanaPage,
+    MicroactivdadesPage,
     EjerciciosPage,
-    PlancPage
+    SeriesPage,
+    VolumenesPage
   ],
   imports: [
     BrowserModule,
@@ -76,9 +86,12 @@ import { PlanAlimenticioProvider } from '../providers/plan-alimenticio/plan-alim
     ComidasPage,
     AlimentosPage,
     PgrupoPage,
-    GmuscularPage,
+    PlancPage,
+    SemanaPage,
+    MicroactivdadesPage,
     EjerciciosPage,
-    PlancPage
+    SeriesPage,
+    VolumenesPage
   ],
   providers: [
     StatusBar,
@@ -87,7 +100,8 @@ import { PlanAlimenticioProvider } from '../providers/plan-alimenticio/plan-alim
     LoginServicioProvider,
     VarGlobalesProvider,
     PlanesconProvider,
-    PlanAlimenticioProvider
+    PlanAlimenticioProvider,
+    PlanEntrenamientoProvider
   ]
 })
 export class AppModule {}

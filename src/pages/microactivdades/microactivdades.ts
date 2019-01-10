@@ -7,10 +7,9 @@ import {
   LoadingController
 } from "ionic-angular";
 import {PlanEntrenamientoProvider} from '../../providers/plan-entrenamiento/plan-entrenamiento'
-import {SeriesPage} from '../series/series';
 
 /**
- * Generated class for the EjerciciosPage page.
+ * Generated class for the MicroactivdadesPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -18,12 +17,14 @@ import {SeriesPage} from '../series/series';
 
 @IonicPage()
 @Component({
-  selector: 'page-ejercicios',
-  templateUrl: 'ejercicios.html',
+  selector: 'page-microactivdades',
+  templateUrl: 'microactivdades.html',
 })
-export class EjerciciosPage {
-  idgrupo_plan: number;
+export class MicroactivdadesPage {
 
+  idplanEntranamiento: number;
+  idc_dia_semana: number;
+  op:string;
   public registros: any = [];
   loading: Loading;
   
@@ -31,15 +32,20 @@ export class EjerciciosPage {
     public planEntrenamientoProvider: PlanEntrenamientoProvider,
     public loadingCtrl: LoadingController) {
 
-      this.idgrupo_plan = this.navParams.get("idgrupo_plan");
+      this.idplanEntranamiento = this.navParams.get("idplanEntranamiento");
+      this.idc_dia_semana = this.navParams.get("idc_dia_semana");
+      this.op="op1";
+      console.log("idplanEntranamiento " +this.idplanEntranamiento);
+      console.log("idc_dia_semana " +this.idc_dia_semana);
+      
   
-      this.getEntrenamiento(this.idgrupo_plan);
+      this.getMicrotipoactividad(this.idplanEntranamiento,this.idc_dia_semana);
   }
 
 
-  getEntrenamiento(idgrupo_plan:number) {
+  getMicrotipoactividad(idplan:number,idc_dia_semana:number) {
     return new Promise(resolve => {
-      this.planEntrenamientoProvider.getEntrenamiento(idgrupo_plan).then(data => {
+      this.planEntrenamientoProvider.getMicrotipoactividad(idplan,idc_dia_semana).then(data => {
         for (let res of data) {
           this.registros.push(res);
         }
@@ -50,13 +56,13 @@ export class EjerciciosPage {
   }
 
 
-  series(idejercicios_gplan:number,nombre:string) {
+  micro(idc_dia_semana:number) {
     this.showLoading();
-    this.navCtrl.push(SeriesPage,{ idejercicios_gplan: idejercicios_gplan,nombre:nombre });
+   // this.navCtrl.push(MicroactivdadesPage,{ idc_dia_semana: idc_dia_semana,idplanEntranamiento:this.idplanEntranamiento });
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Ejercicio');
+    console.log('ionViewDidLoad MicroactivdadesPage');
   }
 
   showLoading() {
@@ -66,5 +72,4 @@ export class EjerciciosPage {
     });
     this.loading.present();
   }
-
 }

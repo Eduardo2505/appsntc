@@ -14,18 +14,7 @@
 
 
 <ion-content>
-    <ion-toolbar>
-       
-        <ion-segment color="danger"  [(ngModel)]="pet">
-          <ion-segment-button value="planes" >
-            Planes
-          </ion-segment-button>
-          <ion-segment-button value="alimentos">
-            Alimenticios
-          </ion-segment-button>
-        </ion-segment>
-      </ion-toolbar>
-    
+   
       
     
       
@@ -37,7 +26,7 @@
 
       <button ion-item (click)="comidas(i.idplanAlimentacion)">
         <ion-icon name="md-restaurant" item-start color="primary"></ion-icon>
-        <ion-label>{{i.descripcion}}<p>Recomendación :</p><p>{{i.recomendacion}}</p></ion-label>
+        <ion-label>{{i.descripcion}}<p style="color:rgb(226, 32, 106)" >Recomendación :</p><p>{{i.recomendacion}}</p></ion-label>
    
         <ion-note item-end>Ver</ion-note>
       </button> 

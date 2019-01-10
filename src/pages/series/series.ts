@@ -6,11 +6,11 @@ import {
   Loading,
   LoadingController
 } from "ionic-angular";
-import {PlanEntrenamientoProvider} from '../../providers/plan-entrenamiento/plan-entrenamiento'
-import {SeriesPage} from '../series/series';
+import {PlanEntrenamientoProvider} from '../../providers/plan-entrenamiento/plan-entrenamiento';
+import {VolumenesPage} from '../volumenes/volumenes';
 
 /**
- * Generated class for the EjerciciosPage page.
+ * Generated class for the SeriesPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -18,11 +18,13 @@ import {SeriesPage} from '../series/series';
 
 @IonicPage()
 @Component({
-  selector: 'page-ejercicios',
-  templateUrl: 'ejercicios.html',
+  selector: 'page-series',
+  templateUrl: 'series.html',
 })
-export class EjerciciosPage {
-  idgrupo_plan: number;
+export class SeriesPage {
+
+  idejercicios_gplan: number;
+  nombre:string;
 
   public registros: any = [];
   loading: Loading;
@@ -31,15 +33,16 @@ export class EjerciciosPage {
     public planEntrenamientoProvider: PlanEntrenamientoProvider,
     public loadingCtrl: LoadingController) {
 
-      this.idgrupo_plan = this.navParams.get("idgrupo_plan");
+      this.idejercicios_gplan = this.navParams.get("idejercicios_gplan");
+      this.nombre = this.navParams.get("nombre");
   
-      this.getEntrenamiento(this.idgrupo_plan);
+      this.getSeries(this.idejercicios_gplan);
   }
 
 
-  getEntrenamiento(idgrupo_plan:number) {
+  getSeries(idejercicios_gplan:number) {
     return new Promise(resolve => {
-      this.planEntrenamientoProvider.getEntrenamiento(idgrupo_plan).then(data => {
+      this.planEntrenamientoProvider.getSeries(idejercicios_gplan).then(data => {
         for (let res of data) {
           this.registros.push(res);
         }
@@ -50,13 +53,11 @@ export class EjerciciosPage {
   }
 
 
-  series(idejercicios_gplan:number,nombre:string) {
+  volumenes(idserie:number) {
     this.showLoading();
-    this.navCtrl.push(SeriesPage,{ idejercicios_gplan: idejercicios_gplan,nombre:nombre });
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad Ejercicio');
+    console.log("idserie:numberidserie:number" +idserie);
+    
+    this.navCtrl.push(VolumenesPage,{ idserie: idserie,nombre:this.nombre});
   }
 
   showLoading() {
@@ -66,5 +67,10 @@ export class EjerciciosPage {
     });
     this.loading.present();
   }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad SeriesPage');
+  }
+
 
 }

@@ -13,6 +13,8 @@ export class HomePage {
   public idUsuario: number;
   public imgPerfil: string;
 
+  
+
   constructor(public navCtrl: NavController,
     public authx: LoginServicioProvider,
       public varGlobal: VarGlobalesProvider) {

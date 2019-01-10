@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Loading, LoadingController } from 'ionic-angular';
-import{GmuscularPage} from '../gmuscular/gmuscular';
+import{SemanaPage} from '../semana/semana';
+import {PlanEntrenamientoProvider} from '../../providers/plan-entrenamiento/plan-entrenamiento'
+import { LoginServicioProvider } from "../../providers/login-servicio/login-servicio";
 
 /**
  * Generated class for the PentrenamientoPage page.
@@ -17,18 +19,42 @@ import{GmuscularPage} from '../gmuscular/gmuscular';
 export class PentrenamientoPage {
 
   loading: Loading;
+  op: string = "";
+  idConsulta: number;
+  public registros: any = [];
+
   constructor(public navCtrl: NavController,
     public loadingCtrl: LoadingController,
+    public authx: LoginServicioProvider,
+    public planEntrenamientoProvider: PlanEntrenamientoProvider,
     public navParams: NavParams) {
+
+      this.idConsulta = authx.currentUser.idConsulta;
+      this.op = "op1";
+      this.getPlanAlimenticio(this.idConsulta);
   }
+
+  getPlanAlimenticio(idConsulta:number) {
+    return new Promise(resolve => {
+      this.planEntrenamientoProvider.getPlanes(idConsulta).then(data => {
+        for (let res of data) {
+          this.registros.push(res);
+        }
+
+        resolve(true);
+      });
+    });
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad PgrupoPage');
   }
 
+ 
 
-  grupo() {
+  grupo(idplanEntranamiento:number) {
     this.showLoading();
-    this.navCtrl.push(GmuscularPage);
+    this.navCtrl.push(SemanaPage,{ idplanEntranamiento: idplanEntranamiento,idConsulta:this.idConsulta });
   }
 
   showLoading() {

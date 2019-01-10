@@ -1,45 +1,42 @@
 <!--
-  Generated template for the EjerciciosPage page.
+  Generated template for the ComidasPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Ejercicios</ion-title>
-  </ion-navbar>
+    <ion-navbar color="primary">
+        <ion-title>Ejercicios</ion-title>
+      </ion-navbar>
 
 </ion-header>
 
 
-<ion-content>
-
-    <ion-list>
-
-
-        <ion-item-group>
+<ion-content >
+   
     
-    
-          <button ion-item >
-            <ion-icon name="md-restaurant" item-start color="primary"></ion-icon>
-            <ion-label>Press de Banca horizontal con barra</ion-label>
-            <ion-label>3</ion-label>
-          </button>
-          <button ion-item >
-              <ion-icon name="md-restaurant" item-start color="primary"></ion-icon>
-              <ion-label>Press de Banca inclinado con barra</ion-label>
-              <ion-label>3</ion-label>
-            </button>
       
-            <button ion-item >
-                <ion-icon name="md-restaurant" item-start color="primary"></ion-icon>
-                <ion-label>Press de Banca declinado con barra</ion-label>
-                <ion-label>3</ion-label>
-              </button>
+    
+      
+  <ion-list>
+
+
+      <ion-item-group #item *ngFor="let i of registros">
+
+
+          <button ion-item (click)="series(i.idejercicios_gplan,i.nombre)">
+            <ion-icon ios="ios-code-working" md="md-code-working" item-start color="primary"></ion-icon>
+            <ion-label text-wrap> {{i.nombre}}  <p style="color:rgb(226, 32, 106)">Series: </p><p>  {{i.series}}</p></ion-label>
+       
+            <ion-note item-end>Ver</ion-note>
+          </button>
+         
           
         </ion-item-group>
-    
-    
-      </ion-list>
+
+  
+
+
+  </ion-list>
 </ion-content>
