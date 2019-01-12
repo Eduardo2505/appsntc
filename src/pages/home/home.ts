@@ -1,48 +1,83 @@
+import { LoginServicioProvider } from "../../providers/login-servicio/login-servicio";
+import { VarGlobalesProvider } from "../../providers/var-globales/var-globales";
+import { Component, ViewChild } from "@angular/core";
 
-import { LoginServicioProvider } from '../../providers/login-servicio/login-servicio';
-import { VarGlobalesProvider } from '../../providers/var-globales/var-globales';
-import { Component, ViewChild } from '@angular/core';
-import { NavController, IonicPage } from 'ionic-angular';
+import { GraficasProvider } from "../../providers/graficas/graficas";
 
-import chartJs from 'chart.js';
+import { NavController, LoadingController, Loading } from "ionic-angular";
+
+import chartJs from "chart.js";
 
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: "page-home",
+  templateUrl: "home.html"
 })
 export class HomePage {
-
   public usuario: string;
   public idUsuario: number;
   public imgPerfil: string;
+  public label: any;
+  public datospt: any;
+  public datosgrasa: any;
+  public datosmuscular: any;
+  public datosmagrar: any;
+  public colores: any;
 
-  @ViewChild('pesoTotal') pesoTotal;
-  @ViewChild('masaGrasa') masaGrasa;
-  @ViewChild('masaMuscular') masaMuscular;
-  @ViewChild('masaMagra') masaMagra;
+  loading: Loading;
 
+  @ViewChild("pesoTotal") pesoTotal;
+  @ViewChild("masaGrasa") masaGrasa;
+  @ViewChild("masaMuscular") masaMuscular;
+  @ViewChild("masaMagra") masaMagra;
 
- 
-
-
-  constructor(public navCtrl: NavController,
+  constructor(
+    public navCtrl: NavController,
     public authx: LoginServicioProvider,
-      public varGlobal: VarGlobalesProvider) {
-      this.idUsuario = authx.currentUser.idempleado;
-      this.usuario=authx.currentUser.name;
-      this.imgPerfil=varGlobal.imgPerfil;
+    public loadingCtrl: LoadingController,
+    public graficasProvider: GraficasProvider,
+    public varGlobal: VarGlobalesProvider
+  ) {
+    this.idUsuario = authx.currentUser.idempleado;
+    this.usuario = authx.currentUser.name;
+    this.imgPerfil = varGlobal.imgPerfil;
 
+    this.graficaPesoTotal(1,this.idUsuario);
   }
 
-  ngAfterViewInit(){
+  public graficaPesoTotal(tipo: number,idCliente:number) {
+    this.showLoading();
+
+    this.graficasProvider
+      .grafica(tipo,idCliente)
+      .then(data => {
+        var resultado = Object.keys(data).length;
+        if (resultado != 0) {
+
+          this.label = data[0]["label"];
+          this.datospt = data[0]["pt"];
+          this.datosgrasa = data[0]["grasa"];
+          this.datosmuscular = data[0]["muscular"];
+          this.datosmagrar = data[0]["magra"];
+          this.colores = data[0]["color"];
+
+
+        } else {
+          this.showError("No existe el usuario");
+        }
+      })
+      .catch(error => {
+        this.showError(error);
+      });
+  }
+
+  ngAfterViewInit() {
     setTimeout(() => {
       this.pesoTotal = this.getBarChart();
       this.masaGrasa = this.getGrasa();
       this.masaMuscular = this.getMuscular();
       this.masaMagra = this.getMagra();
-     // this.lineChart = this.getLineChart();
-    }, 150)
-    
+      // this.lineChart = this.getLineChart();
+    }, 150);
   }
 
   getChart(context, chartType, data, options?) {
@@ -50,107 +85,122 @@ export class HomePage {
       data,
       options,
       type: chartType
-    })
+    });
   }
-  getMuscular(){
+  getMuscular() {
     const data = {
-      labels: ['Consulta 1 '],
-      datasets: [{
-        label: 'MASA MUSCULAR',
-        data: [98.6],
-        borderWidth: 1
-      }]
+      labels: this.label,
+      datasets: [
+        {
+          label: "MASA MUSCULAR",
+          data: this.datosmuscular,
+          backgroundColor: this.colores,
+          borderWidth: 1
+        }
+      ]
     };
 
     const options = {
       scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true
+            }
           }
-        }]
+        ]
       }
-    }
+    };
 
-    return this.getChart(this.masaMuscular.nativeElement, 'bar', data, options);
+    return this.getChart(this.masaMuscular.nativeElement, "bar", data, options);
   }
-  getMagra(){
+  getMagra() {
+    console.log(this.datosmagrar);
+    
     const data = {
-      labels: ['Consulta 1 '],
-      datasets: [{
-        label: 'MASA MAGRA',
-        data: [98.6],
-        backgroundColor: [
-          'rgb(255, 0, 0)'
-        ],
-        borderWidth: 1
-      }]
+      labels: this.label,
+      datasets: [
+        {
+          label: "MASA MAGRA",
+          data: this.datosmagrar,
+          backgroundColor: this.colores,
+          borderWidth: 1
+        }
+      ]
     };
 
     const options = {
       scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true
+            }
           }
-        }]
+        ]
       }
-    }
+    };
 
-    return this.getChart(this.masaMagra.nativeElement, 'bar', data, options);
+    return this.getChart(this.masaMagra.nativeElement, "bar", data, options);
   }
 
-  getGrasa(){
+  getGrasa() {
     const data = {
-      labels: ['Consulta 1 '],
-      datasets: [{
-        label: 'MASA GRASA',
-        data: [12.6],
-        backgroundColor: [
-          'rgb(255, 0, 0)'
-        ],
-        borderWidth: 1
-      }]
+      labels: this.label,
+      datasets: [
+        {
+          label: "MASA GRASA",
+          data: this.datosgrasa,
+          backgroundColor: this.colores,
+          borderWidth: 1
+        }
+      ]
     };
 
     const options = {
       scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true
+            }
           }
-        }]
+        ]
       }
-    }
+    };
 
-    return this.getChart(this.masaGrasa.nativeElement, 'bar', data, options);
+    return this.getChart(this.masaGrasa.nativeElement, "bar", data, options);
   }
 
+  getBarChart() {
 
-  getBarChart(){
+
+    
     const data = {
-      labels: ['Consulta 1 '],
-      datasets: [{
-        label: 'Peso total',
-        data: [70],
-        backgroundColor: [
-          'rgb(255, 0, 0)'
-        ],
-        borderWidth: 1
-      }]
+      labels: this.label,
+      datasets: [
+        {
+          label: "Peso total",
+          data: this.datospt,
+          backgroundColor: this.colores,
+          borderWidth: 1
+        }
+      ]
     };
 
     const options = {
       scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true
+            }
           }
-        }]
+        ]
       }
-    }
+    };
 
-    return this.getChart(this.pesoTotal.nativeElement, 'bar', data, options);
+    return this.getChart(this.pesoTotal.nativeElement, "bar", data, options);
   }
 
   // getLineChart(){
@@ -216,5 +266,22 @@ export class HomePage {
   //   return this.getChart(this.doughnutCanvas.nativeElement, 'doughnut', data);
   // }
 
+  showLoading() {
+    this.loading = this.loadingCtrl.create({
+      content: "Se esta verificando",
+      dismissOnPageChange: true
+    });
+    this.loading.present();
+  }
 
+  showError(text) {
+    this.loading.dismiss();
+
+    let alert = this.alertCtrl.create({
+      title: "Error",
+      subTitle: text,
+      buttons: ["OK"]
+    });
+    alert.present();
+  }
 }

@@ -42,6 +42,7 @@ import { VarGlobalesProvider } from '../providers/var-globales/var-globales';
 import { PlanesconProvider } from '../providers/planescon/planescon';
 import { PlanAlimenticioProvider } from '../providers/plan-alimenticio/plan-alimenticio';
 import { PlanEntrenamientoProvider } from '../providers/plan-entrenamiento/plan-entrenamiento';
+import { GraficasProvider } from '../providers/graficas/graficas';
 
 
 
@@ -101,7 +102,8 @@ import { PlanEntrenamientoProvider } from '../providers/plan-entrenamiento/plan-
     VarGlobalesProvider,
     PlanesconProvider,
     PlanAlimenticioProvider,
-    PlanEntrenamientoProvider
+    PlanEntrenamientoProvider,
+    GraficasProvider
   ]
 })
 export class AppModule {}
