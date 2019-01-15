@@ -4,7 +4,7 @@ import { Component, ViewChild } from "@angular/core";
 
 import { GraficasProvider } from "../../providers/graficas/graficas";
 
-import { NavController, LoadingController, Loading } from "ionic-angular";
+import { NavController, LoadingController, Loading,AlertController } from "ionic-angular";
 
 import chartJs from "chart.js";
 
@@ -34,6 +34,7 @@ export class HomePage {
     public navCtrl: NavController,
     public authx: LoginServicioProvider,
     public loadingCtrl: LoadingController,
+    public alertCtrl: AlertController,
     public graficasProvider: GraficasProvider,
     public varGlobal: VarGlobalesProvider
   ) {
@@ -237,34 +238,7 @@ export class HomePage {
   //   return this.getChart(this.lineCanvas.nativeElement, 'line', data)
   // }
 
-  // getPieChart(){
-  //   const data = {
-  //     labels: ['Vermelho', 'Azul', 'Amarelo'],
-  //     datasets: [{
-  //       data: [300, 75, 224],
-  //       backgroundColor: ['rgb(200, 6, 0)', 'rgb(36, 0, 255)', 'rgb(242, 255, 0)']
-  //     }]
-  //   }
 
-  //   return this.getChart(this.pieCanvas.nativeElement, 'pie', data);
-  // }
-
-  // getDoughnutChart(){
-  //   const data = {
-  //     labels: ['Vermelho', 'Azul', 'Amarelo'],
-  //     datasets: [{
-  //       label: 'Teste Chart',
-  //       data: [12, 65, 32],
-  //       backgroundColor: [
-  //         'rgb(0, 244, 97)',
-  //         'rgb(37, 39, 43)',
-  //         'rgb(255, 207, 0)'
-  //       ]
-  //     }]
-  //   }
-
-  //   return this.getChart(this.doughnutCanvas.nativeElement, 'doughnut', data);
-  // }
 
   showLoading() {
     this.loading = this.loadingCtrl.create({

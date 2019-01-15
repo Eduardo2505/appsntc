@@ -22,6 +22,7 @@ import {MicroactivdadesPage} from '../pages/microactivdades/microactivdades';
 import {EjerciciosPage} from '../pages/ejercicios/ejercicios';
 import {SeriesPage} from '../pages/series/series';
 import {VolumenesPage} from '../pages/volumenes/volumenes';
+import {FotografiaPage} from '../pages/fotografia/fotografia';
 
 
 /*===== FIN PAGE ==============================*/
@@ -43,8 +44,21 @@ import { PlanesconProvider } from '../providers/planescon/planescon';
 import { PlanAlimenticioProvider } from '../providers/plan-alimenticio/plan-alimenticio';
 import { PlanEntrenamientoProvider } from '../providers/plan-entrenamiento/plan-entrenamiento';
 import { GraficasProvider } from '../providers/graficas/graficas';
+import { PerfilProvider } from '../providers/perfil/perfil';
 
+//firebase
+import { AngularFireModule } from 'angularfire2';
+//import { environment } from '../environments/environment';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
+export const firebaseConfig = {
+    apiKey: "AIzaSyAZeEwiIxO8sGUQWi0Nx4rpbxmNso-bfoo",
+    authDomain: "appsntc.firebaseapp.com",
+    databaseURL: "https://appsntc.firebaseio.com",
+    projectId: "appsntc",
+    storageBucket: "appsntc.appspot.com",
+    messagingSenderId: "566906473186"
+};
 
 @NgModule({
   declarations: [
@@ -65,11 +79,15 @@ import { GraficasProvider } from '../providers/graficas/graficas';
     MicroactivdadesPage,
     EjerciciosPage,
     SeriesPage,
-    VolumenesPage
+    VolumenesPage,
+    FotografiaPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    // AngularFireDatabaseModule,
+    // AngularFireAuthModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()
   ],
@@ -92,7 +110,8 @@ import { GraficasProvider } from '../providers/graficas/graficas';
     MicroactivdadesPage,
     EjerciciosPage,
     SeriesPage,
-    VolumenesPage
+    VolumenesPage,
+    FotografiaPage
   ],
   providers: [
     StatusBar,
@@ -103,7 +122,9 @@ import { GraficasProvider } from '../providers/graficas/graficas';
     PlanesconProvider,
     PlanAlimenticioProvider,
     PlanEntrenamientoProvider,
-    GraficasProvider
+    GraficasProvider,
+    // AngularFireDatabase,
+    PerfilProvider
   ]
 })
 export class AppModule {}
